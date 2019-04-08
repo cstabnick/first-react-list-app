@@ -8,14 +8,16 @@ class App extends Component {
     list: [
     {
       id: 1,
-      title: "first article wow o",
+      title: "first title",
+      text: "sample text",
       editOpen: false,
       dismissed: false
     },
     {
       id: 2, 
-      title: "second",
+      title: "second title",
       text: "lorem wowo ipsum",
+      editOpen: false,
       dismissed: false
     }
 
@@ -26,7 +28,7 @@ class App extends Component {
   dismissItem = (id) => {
     this.setState( { list: this.state.list.map(list => {
       if(id === list.id){
-        list.dismissed = true
+        list.dismissed = true;
       }
       return list;
     }) } )
@@ -35,7 +37,18 @@ class App extends Component {
   editItem = (id) => {
     this.setState( { list: this.state.list.map(list => {
       if(id === list.id){
-        list.editOpen = true;
+        list.editOpen = !list.editOpen;
+      }
+      return list;
+    }) } )
+  }
+
+  savePara = (id, text) => {
+    this.setState( { list: this.state.list.map(list =>{
+      if(id === list.id){
+        console.log(this.text);
+        list.text = text;
+        list.editOpen = false;
       }
       return list;
     }) } )
@@ -44,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <List list={this.state.list} dismissItem={this.dismissItem} editItem={this.editItem}/>
+        <List list={this.state.list} savePara={this.savePara} dismissItem={this.dismissItem} editItem={this.editItem}/>
       </div>
     );
   }

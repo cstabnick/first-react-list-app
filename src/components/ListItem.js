@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 
 export class ListItem extends Component {
+  state = {
+    inputPara: ""
+  }
+
   getStyle = (style) => {
     if (style === "dismiss"){
       return {
@@ -15,12 +19,20 @@ export class ListItem extends Component {
     }
     if (style === 'edit'){
       return{
-        display: this.props.list.editOpen ? '' : 'none'
+        display: this.props.list.editOpen ? '' : 'none',
+        fontSize: '20px'
       }
     }
 
   }
 
+  updateInputValue = (event) => {
+    var newString = event.target.value.toString();
+    this.setState((state, props) => {
+      return {inputPara: newString};
+    }
+    )  
+  }
 
   render() {
     const { id, title, text, editOpen } = this.props.list;
@@ -39,7 +51,9 @@ export class ListItem extends Component {
           <button onClick={this.props.editItem.bind(this,id)}>Edit</button>
 
           <div style={this.getStyle('edit')}>
-            <input type="text" name="paragraphText"/>
+            Paragraph Text: <input type="text"  onChange={this.updateInputValue} name="paragraphText"/>
+
+            <input type="button" value="save" onClick={this.props.savePara.bind(this,id,this.state.inputPara)}/>
           </div>
 
         
