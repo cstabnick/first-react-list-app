@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classes from './ListItem.scss';
 
 
 export class ListItem extends Component {
@@ -15,8 +16,7 @@ export class ListItem extends Component {
         display: this.props.list.dismissed ? 'none' : '', 
         padding: '10px',
         textAlign: 'center',
-        fontSize: '2em',
-        borderBottom: '3px #000 solid'
+        fontSize: '2em'
       }
     }
     if (style === 'edit'){
@@ -54,7 +54,7 @@ export class ListItem extends Component {
     
 
     return (
-      <div style={this.getStyle('dismiss')}>
+      <div className='listitem' style={this.getStyle('dismiss')}>
         <p>
           <input type="checkbox" 
           onChange={this.props.dismissItem.bind(this, id)}/> 

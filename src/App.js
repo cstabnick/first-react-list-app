@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import List from './components/List';
+import List from './components/List/List';
+import NavBar from './components/NavBar/NavBar';
+import classes from './App.scss';
 
-import './App.css';
+
 
 class App extends Component {
   state = {
@@ -43,21 +45,31 @@ class App extends Component {
     }) } )
   }
 
-  savePara = (id, text) => {
+  savePara = (id, text, title) => {
     this.setState( { list: this.state.list.map(list =>{
       if(id === list.id){
-        console.log(this.text);
-        list.text = text;
+        console.log(this.title);
+        if (text !== ""){
+          list.text = text;
+        }
+        if (title !== ""){
+          list.title = title;
+        }
         list.editOpen = false;
       }
       return list;
     }) } )
   }
 
+  newItem = () => {
+    
+  }
+
   render() {
     return (
       <div className="App">
-        <List list={this.state.list} savePara={this.savePara} dismissItem={this.dismissItem} editItem={this.editItem}/>
+        <NavBar/>
+        <List list={this.state.list} newItem={this.newItem} savePara={this.savePara} dismissItem={this.dismissItem} editItem={this.editItem}/>
       </div>
     );
   }
