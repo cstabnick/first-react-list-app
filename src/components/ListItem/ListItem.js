@@ -25,16 +25,11 @@ export class ListItem extends Component {
         fontSize: '10px'
       }
     }
-    if (style === 'para'){
-      return{
-        fontSize: '15px'
-      }
-    }
 
   }
 
+  // Updates temporary value stored in edit box
   updateInputValue = (event) => {
-    console.log(event.target);
     var newString = event.target.value.toString();
     if (event.target.name === "paragraphText"){
       this.setState((state, props) => {
@@ -55,24 +50,23 @@ export class ListItem extends Component {
 
     return (
       <div className='listitem' style={this.getStyle('dismiss')}>
-        <p>
-          <input type="checkbox" 
-          onChange={this.props.dismissItem.bind(this, id)}/> 
+        <h1>
           
           {title}
-        </p>
-        <p style={this.getStyle('para')}>
+        </h1>
+        <p>
           {text}
         </p>
 
           <button onClick={this.props.editItem.bind(this,id)}>Edit</button>
+          <button onClick={this.props.dismissItem.bind(this, id)}>Delete</button> 
 
-          <div style={this.getStyle('edit')}>
-            Title: <input type="text" onChange={this.updateInputValue} name="title" />
+          <div className='valueInput' style={this.getStyle('edit')}>
+            <input placeholder="Title" type="text" onChange={this.updateInputValue} name="title" />
             <br/>
-            Paragraph Text: <input type="text"  onChange={this.updateInputValue} name="paragraphText" />
+            <input placeholder="Text" type="text"  onChange={this.updateInputValue} name="paragraphText" />
             <br/>
-            <input type="button" value="save" onClick={this.props.savePara.bind(this,id,this.state.inputPara, this.state.inputTitle)}/>
+            <input type="button" value="Save" onClick={this.props.savePara.bind(this,id,this.state.inputPara, this.state.inputTitle)}/>
           </div>
 
         

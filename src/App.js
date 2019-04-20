@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import List from './components/List/List';
-import NavBar from './components/NavBar/NavBar';
 import classes from './App.scss';
 
 
@@ -26,7 +25,7 @@ class App extends Component {
     ]
   }
 
-  // Dismisses the article
+  // Dismisses the item 
   dismissItem = (id) => {
     this.setState( { list: this.state.list.map(list => {
       if(id === list.id){
@@ -36,6 +35,7 @@ class App extends Component {
     }) } )
   }
 
+  // Opens the item for editing
   editItem = (id) => {
     this.setState( { list: this.state.list.map(list => {
       if(id === list.id){
@@ -45,10 +45,10 @@ class App extends Component {
     }) } )
   }
 
+  // Takes the temp values from ListItem and stores them in state
   savePara = (id, text, title) => {
     this.setState( { list: this.state.list.map(list =>{
       if(id === list.id){
-        console.log(this.title);
         if (text !== ""){
           list.text = text;
         }
@@ -61,12 +61,13 @@ class App extends Component {
     }) } )
   }
 
+  // Appends item to state.list using spread operator
   newItem = (state) => {
     this.setState((state) =>({
       list: [...this.state.list,     {
       id: this.state.list.length + 1, 
-      title: "second title",
-      text: "lorem wowo ipsum",
+      title: "new item",
+      text: "please edit me",
       editOpen: false,
       dismissed: false
     }

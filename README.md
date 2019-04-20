@@ -1,2 +1,1 @@
-## Project Created while learning development with React
-
+## Simple list program create while learning development with React
