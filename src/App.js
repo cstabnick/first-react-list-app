@@ -61,14 +61,22 @@ class App extends Component {
     }) } )
   }
 
-  newItem = () => {
-    
+  newItem = (state) => {
+    this.setState((state) =>({
+      list: [...this.state.list,     {
+      id: this.state.list.length + 1, 
+      title: "second title",
+      text: "lorem wowo ipsum",
+      editOpen: false,
+      dismissed: false
+    }
+]
+    }));
   }
 
   render() {
     return (
       <div className="App">
-        <NavBar/>
         <List list={this.state.list} newItem={this.newItem} savePara={this.savePara} dismissItem={this.dismissItem} editItem={this.editItem}/>
       </div>
     );
