@@ -9,15 +9,8 @@ class App extends Component {
     list: [
     {
       id: 1,
-      title: "first title",
-      text: "sample text",
-      editOpen: false,
-      dismissed: false
-    },
-    {
-      id: 2, 
-      title: "second title",
-      text: "lorem wowo ipsum",
+      title: "This is a responsive list application",
+      text: "Click edit or new to experiment with it",
       editOpen: false,
       dismissed: false
     }
